@@ -1,5 +1,7 @@
 <?php
 
+defined('DS') or define('DS', '/');
+
 Kirby::plugin('schnti/cachebuster', [
 	'options'    => [
 		'active' => true
@@ -10,7 +12,7 @@ Kirby::plugin('schnti/cachebuster', [
 			if ($kirby->option('schnti.cachebuster.active')) {
 
 				$file = $kirby->roots()->index() . DS . $url;
-				return dirname($url) . '/' . F::name($url) . '.' . F::modified($file) . '.css';
+				return dirname($url) . DS . F::name($url) . DS . F::modified($file) . '.css';
 
 			} else {
 				return $url;
@@ -21,7 +23,7 @@ Kirby::plugin('schnti/cachebuster', [
 			if ($kirby->option('schnti.cachebuster.active')) {
 
 				$file = $kirby->roots()->index() . DS . $url;
-				return dirname($url) . '/' . F::name($url) . '.' . F::modified($file) . '.js';
+				return dirname($url) . DS . F::name($url) . DS . F::modified($file) . '.js';
 
 			} else {
 				return $url;
