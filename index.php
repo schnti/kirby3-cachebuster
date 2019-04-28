@@ -10,7 +10,8 @@ Kirby::plugin('schnti/cachebuster', [
 		'css' => function ($kirby, $url) {
 
 			if ($kirby->option('schnti.cachebuster.active')) {
-
+				
+				$url = str_replace((string) $kirby->url(), "", $url) ;
 				$file = $kirby->roots()->index() . DS . $url;
 				return dirname($url) . '/' . F::name($url) . '.' . F::modified($file) . '.css';
 
@@ -21,7 +22,8 @@ Kirby::plugin('schnti/cachebuster', [
 		'js'  => function ($kirby, $url) {
 
 			if ($kirby->option('schnti.cachebuster.active')) {
-
+				
+				$url = str_replace((string) $kirby->url(), "", $url) ;
 				$file = $kirby->roots()->index() . DS . $url;
 				return dirname($url) . '/' . F::name($url) . '.' . F::modified($file) . '.js';
 
