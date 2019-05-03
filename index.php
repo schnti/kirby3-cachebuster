@@ -8,28 +8,33 @@ Kirby::plugin('schnti/cachebuster', [
 	],
 	'components' => [
 		'css' => function ($kirby, $url) {
-
+			
 			if ($kirby->option('schnti.cachebuster.active')) {
 				
-				$url = str_replace((string) $kirby->url(), "", $url) ;
-				$file = $kirby->roots()->index() . DS . $url;
-				return dirname($url) . '/' . F::name($url) . '.' . F::modified($file) . '.css';
+			    $relative_url = parse_url($url, PHP_URL_PATH);
+			    $file_root = $kirby->root('index') . DS . $relative_url;
 
-			} else {
-				return $url;
+			    if (F::exists($file_root)) {
+				return url(dirname($relative_url) . '/' . F::name($relative_url) . '.' . F::modified($file_root) . '.css');
+			    }
 			}
+			
+		    	return $url;
+			
 		},
 		'js'  => function ($kirby, $url) {
-
+			
 			if ($kirby->option('schnti.cachebuster.active')) {
 				
-				$url = str_replace((string) $kirby->url(), "", $url) ;
-				$file = $kirby->roots()->index() . DS . $url;
-				return dirname($url) . '/' . F::name($url) . '.' . F::modified($file) . '.js';
+			    $relative_url = parse_url($url, PHP_URL_PATH);
+			    $file_root = $kirby->root('index') . DS . $relative_url;
 
-			} else {
-				return $url;
+			    if (F::exists($file_root)) {
+				return url(dirname($relative_url) . '/' . F::name($relative_url) . '.' . F::modified($file_root) . '.css');
+			    }
 			}
+			
+		    	return $url;
 		}
 	]
 ]);
