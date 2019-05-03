@@ -30,7 +30,7 @@ Kirby::plugin('schnti/cachebuster', [
 			    $file_root = $kirby->root('index') . DS . $relative_url;
 
 			    if (F::exists($file_root)) {
-				return url(dirname($relative_url) . '/' . F::name($relative_url) . '.' . F::modified($file_root) . '.css');
+				return url(dirname($relative_url) . '/' . F::name($relative_url) . '.' . F::modified($file_root) . '.js');
 			    }
 			}
 			
