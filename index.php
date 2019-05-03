@@ -20,7 +20,6 @@ Kirby::plugin('schnti/cachebuster', [
 			}
 			
 		    	return $url;
-			
 		},
 		'js'  => function ($kirby, $url) {
 			
