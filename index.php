@@ -11,7 +11,7 @@ Kirby::plugin('schnti/cachebuster', [
 			
 			if ($kirby->option('schnti.cachebuster.active')) {
 				
-			    $relative_url = parse_url($url, PHP_URL_PATH);
+			    $relative_url = Url::path($url, false);
 			    $file_root = $kirby->root('index') . DS . $relative_url;
 
 			    if (F::exists($file_root)) {
@@ -25,7 +25,7 @@ Kirby::plugin('schnti/cachebuster', [
 			
 			if ($kirby->option('schnti.cachebuster.active')) {
 				
-			    $relative_url = parse_url($url, PHP_URL_PATH);
+			    $relative_url = Url::path($url, false);
 			    $file_root = $kirby->root('index') . DS . $relative_url;
 
 			    if (F::exists($file_root)) {
