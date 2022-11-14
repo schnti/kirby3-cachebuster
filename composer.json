@@ -1,6 +1,6 @@
 {
   "name": "schnti/cachebuster",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "kirby-plugin",
   "description": "A plugin for Kirby 3 CMS to add modification timestamps to css and js files",
   "homepage": "https://github.com/schnti/kirby3-cachebuster",
