@@ -10,10 +10,10 @@ Kirby::plugin('schnti/cachebuster', [
 		'css' => function ($kirby, $url) {
 
 			if ($kirby->option('schnti.cachebuster.active')) {
-
-				$file = $kirby->roots()->index() . DS . $url;
-				return dirname($url) . '/' . F::name($url) . '.' . F::modified($file) . '.css';
-
+				$relative_url = Url::path($url, false);
+				$file = $kirby->roots()->index() . DS . $relative_url;
+				
+				return dirname($relative_url) . '/' . F::name($relative_url) . '.' . F::modified($file) . '.css';
 			} else {
 				return $url;
 			}
@@ -21,9 +21,9 @@ Kirby::plugin('schnti/cachebuster', [
 		'js'  => function ($kirby, $url) {
 
 			if ($kirby->option('schnti.cachebuster.active')) {
-
-				$file = $kirby->roots()->index() . DS . $url;
-				return dirname($url) . '/' . F::name($url) . '.' . F::modified($file) . '.js';
+				$relative_url = Url::path($url, false);
+				$file = $kirby->roots()->index() . DS . $relative_url;
+				return dirname($relative_url) . '/' . F::name($relative_url) . '.' . F::modified($file) . '.js';
 
 			} else {
 				return $url;
