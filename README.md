@@ -4,6 +4,24 @@ A plugin for [Kirby 3 CMS](http://getkirby.com) to add modification timestamps t
 
 Please note that this plugin doesn't add caching headers to your CSS and JS files. To make proper use of this plugin, you need to add caching rules to your server configuration.
 
+## What gets a timestamp – and what doesn't
+
+Only local files that actually exist on disk are rewritten. Everything else is
+returned unchanged:
+
+| URL passed to `css()` / `js()` | Result |
+| --- | --- |
+| `assets/main.js` | `assets/main.<timestamp>.js` |
+| `https://your-site.tld/assets/css/templates/blog.css` (Kirby's automatic template assets) | `…/blog.<timestamp>.css` |
+| `https://cdn.example.com/lib.js` (external) | unchanged |
+| `//cdn.example.com/lib.js` (protocol-relative) | unchanged |
+| `https://maps.googleapis.com/maps/api/js?key=…` (query string) | unchanged |
+| `assets/not-generated-yet.js` (file missing) | unchanged |
+
+Absolute URLs of your own site are matched against `$kirby->url('index')`, so
+subfolder installations work as well. The timestamp is inserted into the
+original URL, which keeps absolute URLs absolute and relative ones relative.
+
 ## Commercial Usage
 
 This plugin is free but if you use it in a commercial project please consider
